@@ -1,0 +1,227 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--black);
+  color: var(--offwhite);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Sections pick up their theme */
+[data-theme] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Type roles */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: oblique;
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
+}
+
+.t-info {
+  font-family: var(--font-info);
+  font-weight: 500;
+  font-size: var(--fs-info);
+  letter-spacing: var(--ls-info);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+
+/* Signature square */
+.sq {
+  display: inline-block;
+  width: var(--sq);
+  height: var(--sq);
+  background: currentColor;
+  vertical-align: 0.06em;
+  flex: none;
+}
+
+.sq--accent {
+  background: var(--accent);
+}
+
+/* Image frame: thin off-white border */
+.frame {
+  position: relative;
+  border: var(--frame-border);
+  overflow: hidden;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Logo: three stacked layers for the glitch, square pulses like REC */
+.logo {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.logo__layer--w,
+.logo__rec { fill: var(--offwhite); }
+.logo__layer--m { fill: var(--magenta); opacity: 0; }
+.logo__layer--g { fill: var(--green); opacity: 0; }
+
+/* REC: the logo square pulses slowly */
+.logo__rec {
+  animation: rec 3s ease-in-out infinite;
+}
+
+@keyframes rec {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo__rec { animation: none; }
+}
+
+/* Grain overlay canvas */
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+  z-index: var(--z-grain);
+  mix-blend-mode: overlay;
+}
+
+/* RGB split on display type, offset set from scroll velocity (effects.js) */
+.t-display {
+  text-shadow:
+    calc(var(--rgb, 0px) * -1) 0 0 var(--magenta),
+    var(--rgb, 0px) 0 0 var(--green);
+}
+
+/* Square cursor (cursor.js) */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input {
+  cursor: text !important;
+}
+
+.cursor {
+  --c: var(--magenta);
+  --s: 12px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  width: var(--s);
+  height: var(--s);
+  display: grid;
+  place-items: center;
+  background: var(--c);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    width 0.3s var(--ease-snap),
+    height 0.3s var(--ease-snap),
+    background-color 0.2s linear,
+    opacity 0.2s linear;
+}
+
+.cursor.is-visible { opacity: 1; }
+.cursor.is-link { --s: 26px; }
+.cursor.is-view { --s: 88px; }
+
+.cursor__label {
+  color: var(--black);
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.cursor.is-view .cursor__label {
+  opacity: 1;
+  transition-delay: 0.1s;
+}

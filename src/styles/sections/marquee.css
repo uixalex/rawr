@@ -1,0 +1,38 @@
+/* Marquee: one loud row in the logo face, squares as separators */
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  border-block: var(--frame-border);
+  padding-block: clamp(0.9rem, 2.2vw, 1.75rem);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  flex: none;
+  font-size: clamp(2.75rem, 9vw, 8rem);
+  white-space: nowrap;
+}
+
+.marquee__item {
+  padding-inline: 0.05em 0.1em;
+}
+
+.marquee .sq {
+  --sq: 0.3em;
+  margin-inline: 0.35em 0.4em;
+  vertical-align: 0.25em;
+  background: var(--magenta);
+}
+
+/* Every second square is green (squares sit on even span positions) */
+.marquee .sq:nth-of-type(4n) {
+  background: var(--green);
+}

@@ -1,0 +1,67 @@
+/* Lineup (magenta): huge outlined names, fill white with a small shake on hover */
+
+.lineup {
+  padding-block: var(--space-xl);
+  padding-inline: var(--gutter);
+  overflow: hidden;
+}
+
+.lineup__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.25em;
+  row-gap: 0.12em;
+  font-size: clamp(2.6rem, 1rem + 7.5vw, 9.5rem);
+  text-align: center;
+}
+
+.lineup__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+/* Square separator after every name except the last */
+.lineup__name:not(:last-child)::after {
+  content: '';
+  width: 0.22em;
+  height: 0.22em;
+  background: var(--accent);
+  flex: none;
+}
+
+.lineup__text {
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, 0.12vw, 2px) var(--fg);
+  transition: color 0.15s;
+  /* Room for the oblique overhang so the fill is not clipped */
+  padding-inline: 0.04em 0.1em;
+}
+
+.lineup__name.is-filled .lineup__text {
+  color: var(--fg);
+  animation: lineup-shake 0.3s steps(1, end);
+}
+
+@keyframes lineup-shake {
+  0% { translate: 0.03em 0; }
+  25% { translate: -0.025em 0.01em; }
+  50% { translate: 0.015em -0.01em; }
+  75% { translate: -0.01em 0; }
+  100% { translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineup__name.is-filled .lineup__text { animation: none; }
+}
+
+.lineup__name:focus-visible {
+  outline-offset: 0.1em;
+}
+
+/* Outlined text is transparent, so the global RGB text-shadow would show through */
+.lineup__list {
+  text-shadow: none;
+}

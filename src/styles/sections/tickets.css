@@ -1,0 +1,176 @@
+/* Tickets + Newsletter (green) */
+
+.tickets {
+  display: grid;
+  gap: var(--space-l);
+  padding-block: var(--space-xl);
+  padding-inline: var(--gutter);
+}
+
+/* Tiers */
+
+.tickets__tiers {
+  display: grid;
+  border-top: 1px solid var(--black);
+}
+
+.tier {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--space-s);
+  padding-block: clamp(1rem, 2vw, 1.75rem);
+  padding-inline: 0.25rem;
+  border-bottom: 1px solid var(--black);
+  isolation: isolate;
+}
+
+.tier::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--black);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s var(--ease-snap);
+}
+
+.tier.is-active::before { transform: scaleY(1); }
+.tier.is-active { color: var(--green); }
+
+.tier__label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: clamp(1.1rem, 0.75rem + 1.5vw, 2.1rem);
+  line-height: 1.1;
+}
+
+.tier__label .sq {
+  --sq: 0.7em;
+  width: 0;
+  transition: width 0.3s var(--ease-snap);
+}
+.tier.is-active .tier__label .sq { width: var(--sq); }
+
+.tier__price {
+  font-size: clamp(2.5rem, 1.2rem + 6vw, 7.5rem);
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+/* CTA: one loud black bar */
+
+.tickets__cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.55em 0.5em 0.5em;
+  background: var(--black);
+  color: var(--offwhite);
+  font-size: clamp(1.6rem, 0.8rem + 4vw, 5rem);
+  line-height: 1;
+  text-align: center;
+  transition: color 0.2s var(--ease-out);
+}
+
+.tickets__cta .sq {
+  --sq: 0.35em;
+  background: var(--green);
+  transition: transform 0.4s var(--ease-snap);
+}
+
+.tickets__cta:hover,
+.tickets__cta:focus-visible { color: var(--green); }
+.tickets__cta:hover .sq { transform: rotate(90deg) scale(1.3); }
+
+/* Newsletter */
+
+.newsletter {
+  display: grid;
+  gap: var(--space-m);
+  padding-top: var(--space-l);
+}
+
+.newsletter__text {
+  max-width: 16ch;
+  font-family: var(--font-info);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.newsletter__form {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid var(--black);
+}
+
+.newsletter__input {
+  flex: 1;
+  min-width: 0;
+  padding-block: 0.8em;
+  background: none;
+  border: 0;
+  color: var(--black);
+  font-family: var(--font-info);
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+  font-weight: 500;
+  outline: none;
+}
+
+.newsletter__input::placeholder {
+  color: var(--black);
+  opacity: 0.55;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-info);
+}
+
+.newsletter__submit {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  flex: none;
+}
+
+.newsletter__submit .sq {
+  --sq: 1rem;
+  background: var(--black);
+  transition: transform 0.35s var(--ease-snap), background-color 0.2s;
+}
+
+.newsletter__submit:hover .sq,
+.newsletter__submit:focus-visible .sq {
+  transform: scale(1.6);
+  background: var(--magenta);
+}
+
+.newsletter__form:focus-within { border-color: var(--magenta); }
+
+.newsletter.is-sent .newsletter__form { border-color: var(--black); opacity: 0.5; pointer-events: none; }
+
+@media (min-width: 900px) {
+  .tickets {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--space-s);
+  }
+
+  .tickets__tiers,
+  .tickets__cta { grid-column: 1 / -1; }
+
+  .tier { padding-inline: 0.75rem; }
+
+  .newsletter {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--space-s);
+    align-items: end;
+  }
+
+  .newsletter__text { grid-column: 1 / 7; }
+  .newsletter__form { grid-column: 7 / -1; }
+}

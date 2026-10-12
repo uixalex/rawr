@@ -1,0 +1,54 @@
+/* Footer (black): small line on top, huge logo across the bottom */
+
+.footer {
+  display: grid;
+  gap: var(--space-l);
+  padding-top: var(--space-l);
+  padding-inline: var(--gutter);
+  overflow: hidden;
+}
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  padding-bottom: var(--space-s);
+  border-bottom: var(--frame-border);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em var(--gap-info);
+}
+
+.footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.footer__links .sq {
+  --sq: 0.6em;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.25s var(--ease-snap);
+}
+
+.footer__links a:hover .sq,
+.footer__links a:focus-visible .sq { width: var(--sq); }
+
+/* Huge logo, centered, sits on the bottom edge */
+.footer__logo {
+  display: block;
+  width: 100%;
+  margin-inline: auto;
+  padding-bottom: clamp(0.75rem, 2vw, 2rem);
+  overflow: hidden;
+}
+
+.footer__logo .logo {
+  width: 100%;
+}

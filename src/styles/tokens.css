@@ -1,0 +1,84 @@
+/* RAWR design tokens
+   Section backgrounds sampled from the RAWR Instagram posters (3 to 6). */
+
+@font-face {
+  font-family: 'HN Display';
+  src: url('/fonts/HelveticaNeue-93-BlackExtObl.otf') format('opentype');
+  font-weight: 900;
+  font-style: oblique;
+  font-display: swap;
+}
+
+/* Small text (info + body) is Inter, as on the posters. Loaded in main.js. */
+
+:root {
+  /* Color */
+  --black: #252525;
+  --offwhite: #f0f0f0;
+  --grey: #c0c0c0;
+  --magenta-bg: #ab3fa7;
+  --green-bg: #3bbb56;
+  --magenta: #e35fe6;
+  --green: #4fe23d;
+
+  /* Per-section roles, overridden by [data-theme] */
+  --bg: var(--black);
+  --fg: var(--offwhite);
+  --accent: var(--magenta);
+
+  /* Type */
+  --font-display: 'HN Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-info: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Display: huge, tight. Info: small, wide. */
+  --fs-logo: clamp(6rem, 31vw, 34rem);
+  --fs-h1: clamp(3.25rem, 13vw, 14rem);
+  --fs-h2: clamp(2.5rem, 9vw, 9rem);
+  --fs-body: clamp(1rem, 0.9rem + 0.5vw, 1.375rem);
+  --fs-info: clamp(0.6875rem, 0.64rem + 0.2vw, 0.8125rem);
+
+  --lh-display: 0.82;
+  --ls-display: -0.045em;
+  /* Posters: normal tracking, wide gaps between items */
+  --ls-info: 0.01em;
+  --gap-info: 1.5em;
+
+  /* Signature square from the logo */
+  --sq: 0.62em;
+
+  /* Space */
+  --gutter: 16px;
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 2rem;
+  --space-l: clamp(3rem, 8vw, 7rem);
+  --space-xl: clamp(5rem, 14vw, 12rem);
+
+  /* Nav */
+  --nav-h: clamp(3.5rem, 3rem + 2vw, 5rem);
+
+  /* Frames */
+  --frame-border: clamp(1px, 0.25vw, 3px) solid var(--offwhite);
+
+  /* Layers */
+  --z-content: 1;
+  --z-cursor: 900;
+  --z-grain: 1000;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+/* Section themes: color sections are hits on the black base */
+[data-theme='black'] { --bg: var(--black); --fg: var(--offwhite); --accent: var(--magenta); }
+[data-theme='magenta'] { --bg: var(--magenta-bg); --fg: var(--offwhite); --accent: var(--green); }
+[data-theme='grey'] { --bg: var(--grey); --fg: var(--black); --accent: var(--magenta); }
+[data-theme='green'] { --bg: var(--green-bg); --fg: var(--black); --accent: var(--magenta); }

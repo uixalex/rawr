@@ -1,0 +1,119 @@
+/* Program: big heading, then the timetable rows */
+
+.program {
+  padding-block: var(--space-xl);
+  padding-inline: var(--gutter);
+}
+
+/* Heading: huge italic word like the logo, the date small and quiet beside it */
+.program__heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem var(--space-s);
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+}
+
+.program__heading-text {
+  font-size: clamp(2.5rem, 0.4rem + 10.5vw, 11rem);
+  line-height: 0.85;
+  /* Room for the oblique overhang */
+  padding-right: 0.08em;
+}
+
+.program__heading-date {
+  padding-bottom: 0.4em;
+  white-space: nowrap;
+}
+
+/* List */
+
+.program__list {
+  border-top: var(--frame-border);
+}
+
+.program__row {
+  --row-accent: var(--magenta);
+  /* Time column is sized from the time font: 00:00 in the extended face is ~3.5em wide */
+  --time-size: clamp(1.25rem, 0.9rem + 1.6vw, 2.75rem);
+  --time-col: calc(var(--time-size) * 3.9);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--time-col) 1fr;
+  grid-template-areas:
+    'time title'
+    'time cat';
+  column-gap: clamp(1rem, 2.5vw, 2.5rem);
+  row-gap: 0.35em;
+  align-items: baseline;
+  padding-block: clamp(0.9rem, 1.8vw, 1.5rem);
+  padding-inline: 0.25rem;
+  border-bottom: var(--frame-border);
+  isolation: isolate;
+}
+
+.program__row[data-cat='graffiti'],
+.program__row[data-cat='basketball'] { --row-accent: var(--green); }
+.program__row[data-cat='info'] { --row-accent: var(--offwhite); }
+
+/* Highlight: accent wipes in from the left */
+.program__row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--row-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-snap);
+}
+
+.program__row.is-active::before { transform: scaleX(1); }
+.program__row.is-active { color: var(--black); }
+
+.program__time {
+  grid-area: time;
+  font-size: var(--time-size);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.program__title {
+  grid-area: title;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  font-family: var(--font-info);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 0.9rem + 0.9vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Signature square as the active indicator */
+.program__title .sq {
+  --sq: 0.5em;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s var(--ease-snap);
+}
+.program__row.is-active .program__title .sq { width: var(--sq); }
+
+.program__cat {
+  grid-area: cat;
+  opacity: 0.6;
+}
+.program__row.is-active .program__cat { opacity: 1; }
+
+@media (min-width: 900px) {
+  .program__row {
+    grid-template-columns: var(--time-col) 1fr auto;
+    grid-template-areas: 'time title cat';
+    align-items: center;
+    padding-inline: 0.5rem;
+  }
+
+  .program__cat { justify-self: end; }
+}

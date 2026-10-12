@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAWR | Specimen (dev only)</title>
+    <style>
+      .spec { padding: var(--space-l) var(--gutter); display: grid; gap: var(--space-l); }
+      .spec__label { opacity: 0.55; margin-bottom: var(--space-s); }
+      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-xs); }
+      .swatch { aspect-ratio: 1; border: var(--frame-border); padding: var(--space-xs); display: flex; align-items: flex-end; }
+      .logo { font-size: var(--fs-logo); display: flex; align-items: flex-start; gap: 0.04em; }
+      .logo .sq { --sq: 0.14em; margin-top: 0.1em; }
+      .info-row { display: flex; flex-wrap: wrap; gap: var(--space-s) var(--gap-info); align-items: center; }
+      .frames { display: grid; gap: var(--space-s); }
+      .frames .frame { aspect-ratio: 3 / 2; }
+      .bleed { margin-right: calc(var(--gutter) * -1 - 4vw); }
+      .themes { display: grid; gap: 0; }
+      .themes > div { padding: var(--space-m) var(--gutter); }
+      @media (min-width: 768px) { .frames { grid-template-columns: 1fr 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main class="spec">
+      <section>
+        <p class="t-info spec__label">Display / 93 Black Extended Oblique</p>
+        <h1 class="t-display logo" aria-label="RAWR">RAWR<span class="sq sq--accent"></span></h1>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Info / Inter Medium</p>
+        <p class="t-info info-row">
+          <span>Munich</span><span class="sq"></span><span>09/08</span><span class="sq"></span><span>21H</span>
+        </p>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Body / Inter Regular</p>
+        <p class="t-body" style="max-width: 38ch">
+          RAWR is a one-night festival of urban culture. Walls get painted, beats get dropped,
+          bodies move and the court never sleeps. No stages between artists and crowd.
+          Just the city, loud and unfiltered.
+        </p>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Headline scale</p>
+        <h2 class="t-display" style="font-size: var(--fs-h1)">One night.</h2>
+        <h2 class="t-display" style="font-size: var(--fs-h2)">Zero rules.</h2>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Colors</p>
+        <div class="swatches t-info">
+          <div class="swatch" style="background: var(--black)">--black</div>
+          <div class="swatch" style="background: var(--offwhite); color: var(--black)">--offwhite</div>
+          <div class="swatch" style="background: var(--grey); color: var(--black)">--grey</div>
+          <div class="swatch" style="background: var(--magenta-bg); color: var(--black)">--magenta-bg</div>
+          <div class="swatch" style="background: var(--green-bg); color: var(--black)">--green-bg</div>
+          <div class="swatch" style="background: var(--magenta); color: var(--black)">--magenta</div>
+          <div class="swatch" style="background: var(--green); color: var(--black)">--green</div>
+        </div>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Section themes</p>
+        <div class="themes">
+          <div data-theme="magenta"><p class="t-display" style="font-size: var(--fs-h2)">Lineup</p></div>
+          <div data-theme="grey"><p class="t-display" style="font-size: var(--fs-h2)">Info</p></div>
+          <div data-theme="green"><p class="t-display" style="font-size: var(--fs-h2)">Tickets</p></div>
+        </div>
+      </section>
+
+      <section>
+        <p class="t-info spec__label">Frames / pairs</p>
+        <div class="frames">
+          <figure class="frame"><img src="/images/basketball-plain.webp" alt="Streetball players in motion on a court in front of a graffiti wall" /></figure>
+          <figure class="frame"><img src="/images/basketball-color.webp" alt="Streetball player jumping to the hoop, colored in green and magenta" /></figure>
+          <figure class="frame"><img src="/images/dj-plain.webp" alt="DJ playing vinyl at an outdoor street party, crowd dancing" /></figure>
+          <figure class="frame bleed"><img src="/images/dj-color.webp" alt="DJ at the decks, colored in magenta and green" /></figure>
+          <figure class="frame"><img src="/images/graffiti-color-a.webp" alt="Young writer in a cap spraying a wall, colored in magenta and green" /></figure>
+          <figure class="frame"><img src="/images/graffiti-color-b.webp" alt="Hooded figure painting a graffiti wall, colored in magenta" /></figure>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

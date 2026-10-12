@@ -1,0 +1,51 @@
+/* About: manifesto text, and the R from the logo with its blinking square */
+
+.about {
+  display: grid;
+  gap: var(--space-l);
+  padding-block: var(--space-xl);
+  padding-inline: var(--gutter);
+}
+
+.about__text {
+  max-width: 24ch;
+  font-family: var(--font-info);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.2rem + 3.2vw, 4.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+/* The R: outlined until scrolling fills it, split into magenta / green by scroll speed */
+.about__mark {
+  justify-self: center;
+  width: min(62vw, 30rem);
+}
+
+.about__r {
+  display: block;
+  filter:
+    drop-shadow(calc(var(--rgb, 0px) * -1.5) 0 0 var(--magenta))
+    drop-shadow(calc(var(--rgb, 0px) * 1.5) 0 0 var(--green));
+}
+
+.about__r-outline {
+  fill: none;
+  stroke: var(--offwhite);
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+}
+
+@media (min-width: 900px) {
+  .about {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-l);
+    align-items: center;
+  }
+
+  /* Centered in the right half */
+  .about__mark {
+    justify-self: center;
+    width: clamp(20rem, 36vw, 44rem);
+  }
+}
