@@ -17,6 +17,23 @@ export function initFooter() {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+  // Touch: the address bar changes the viewport height, so a scrubbed rise can stop
+  // half way. Play it once, fully, as soon as the logo comes into view.
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    gsap.fromTo(
+      svg,
+      { yPercent: 70 },
+      {
+        yPercent: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        onComplete: glitch,
+        scrollTrigger: { trigger: wrap, start: 'top 98%', once: true },
+      },
+    )
+    return
+  }
+
   // The page can't scroll past the end, so lock in near full progress instead of onLeave
   let locked = false
   gsap.fromTo(

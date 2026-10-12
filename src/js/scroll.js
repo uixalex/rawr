@@ -22,6 +22,7 @@ export function createScroll() {
     const link = e.target.closest('a[href^="#"]')
     if (!link) return
     const id = link.getAttribute('href')
+    if (id === '#') return
     const target = id === '#main' ? 0 : document.querySelector(id)
     if (target === null) return
     e.preventDefault()

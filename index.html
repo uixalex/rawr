@@ -162,20 +162,26 @@
       <section class="tickets" id="tickets" data-theme="green" aria-labelledby="tickets-title">
         <h2 class="visually-hidden" id="tickets-title">Tickets</h2>
         <ul class="tickets__tiers">
-          <li class="tier">
-            <span class="tier__label t-info"><span class="sq"></span>Early Bird</span>
-            <span class="tier__price t-display">€25</span>
+          <li>
+            <button class="tier" type="button" aria-pressed="false" data-tier="early-bird">
+              <span class="tier__label t-info"><span class="sq"></span>Early Bird</span>
+              <span class="tier__price t-display">€25</span>
+            </button>
           </li>
-          <li class="tier">
-            <span class="tier__label t-info"><span class="sq"></span>Regular</span>
-            <span class="tier__price t-display">€35</span>
+          <li>
+            <button class="tier" type="button" aria-pressed="false" data-tier="regular">
+              <span class="tier__label t-info"><span class="sq"></span>Regular</span>
+              <span class="tier__price t-display">€35</span>
+            </button>
           </li>
-          <li class="tier">
-            <span class="tier__label t-info"><span class="sq"></span>At the door</span>
-            <span class="tier__price t-display">€45</span>
+          <li>
+            <button class="tier" type="button" aria-pressed="false" data-tier="door">
+              <span class="tier__label t-info"><span class="sq"></span>At the door</span>
+              <span class="tier__price t-display">€45</span>
+            </button>
           </li>
         </ul>
-        <a class="tickets__cta t-display" href="#">Get your ticket <span class="sq"></span></a>
+        <a class="tickets__cta t-display" href="#tickets">Get your ticket <span class="sq"></span></a>
 
         <div class="newsletter">
           <p class="newsletter__text">Stay loud. Get lineup drops first.</p>

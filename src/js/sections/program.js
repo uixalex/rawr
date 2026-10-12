@@ -1,6 +1,6 @@
 // Program: rows highlight on hover with the sound of their discipline.
 // Times and labels scramble in once as rows enter.
-// Touch screens: the row in the middle of the screen is the active one.
+// Touch screens: tap a row to open it.
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { gsap } from 'gsap'
 import { scramble } from '../scramble.js'
@@ -44,12 +44,12 @@ export function initProgram() {
     })
     section.querySelector('.program__list').addEventListener('pointerleave', () => activate(null))
   } else {
+    // Touch: a row only opens when tapped, tapping it again closes it
     rows.forEach((row) =>
-      ScrollTrigger.create({
-        trigger: row,
-        start: 'top 55%',
-        end: 'bottom 55%',
-        onToggle: (self) => self.isActive && activate(row),
+      row.addEventListener('click', () => {
+        if (row === activeRow) return activate(null)
+        programSound(row.dataset.cat)
+        activate(row)
       }),
     )
   }

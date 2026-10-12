@@ -24,7 +24,7 @@
   align-items: center;
   gap: 0.6em;
   padding: 0.85em 0.4em;
-  font-size: clamp(0.85rem, 0.75rem + 0.4vw, 1.1rem);
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   color: inherit;
   background: none;
   border: 0;
@@ -56,8 +56,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
-  padding: 0.85em 1.5em;
-  font-size: clamp(0.85rem, 0.75rem + 0.4vw, 1.1rem);
+  padding: 0.7em 1.2em;
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   border: var(--frame-border);
   transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
